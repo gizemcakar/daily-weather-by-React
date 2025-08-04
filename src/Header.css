@@ -1,0 +1,11 @@
+.header {
+  background-color: #2196f3;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.header p{
+    font-style: italic;
+    color: #f0f0f0; 
+}
