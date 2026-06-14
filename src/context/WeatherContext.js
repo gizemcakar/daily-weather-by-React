@@ -16,13 +16,15 @@ export const WeatherProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // You'll need to get a free API key from openweathermap.org
-  const API_KEY = 'd6dd1bb82a7cf62917275099f0c2322d'; // Replace with your actual API key
+  // API key is read from environment variable `REACT_APP_OPENWEATHER_API_KEY`.
+  // For local development create a `.env` file at the project root with:
+  // REACT_APP_OPENWEATHER_API_KEY=your_api_key_here
+  const API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY || 'YOUR_API_KEY_HERE';
   const BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
   const fetchWeatherData = async (city) => {
     if (!API_KEY || API_KEY === 'YOUR_API_KEY_HERE') {
-      setError('Please add your OpenWeatherMap API key');
+      setError('Please add your OpenWeatherMap API key. Create a .env file with REACT_APP_OPENWEATHER_API_KEY.');
       return;
     }
 

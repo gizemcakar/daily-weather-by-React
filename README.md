@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# Daily Weather (React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A small React app that shows current weather and a 5-day forecast for Turkish cities. It uses React Context for city selection and fetching weather data from the OpenWeatherMap API.
 
-## Available Scripts
+**Features**
+- Select a Turkish city from a searchable dropdown (`src/context/CityContext.js`).
+- Shows current weather and a 5-day summarized forecast (`src/context/WeatherContext.js` + `src/components/WeatherDisplay.js`).
+- Simple, responsive UI with separate components for dropdown and display.
 
-In the project directory, you can run:
+**Prerequisites**
+- Node.js (recommended 14+)
+- npm (or use `pnpm` / `yarn` if preferred)
 
-### `npm start`
+## Quick Start
+1. Install dependencies:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+	`npm install`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Start the development server:
 
-### `npm test`
+	`npm start`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+	The app will open at http://localhost:3000 by default.
 
-### `npm run build`
+3. Build for production:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+	`npm run build`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Run tests:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+	`npm test`
 
-### `npm run eject`
+## OpenWeatherMap API Key
+This project fetches weather data from OpenWeatherMap. Add your API key before running the app:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Open [src/context/WeatherContext.js](src/context/WeatherContext.js#L1-L109)
+- Replace the `API_KEY` value (currently a placeholder) with your OpenWeatherMap key.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Tip: For a safer approach, replace the inline `API_KEY` in `WeatherContext.js` with `process.env.REACT_APP_OPENWEATHER_API_KEY` and set the key in a `.env` file:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+`REACT_APP_OPENWEATHER_API_KEY=your_api_key_here`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Using environment variables (`.env`)
 
-## Learn More
+This project reads the OpenWeatherMap key from `REACT_APP_OPENWEATHER_API_KEY` at build/runtime. Follow these steps to configure it locally:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Copy the example file to create a local `.env` file (this file is ignored by git):
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+	`cp .env.example .env`
 
-### Code Splitting
+2. Open `.env` and replace the placeholder value with your key:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+	`REACT_APP_OPENWEATHER_API_KEY=your_actual_key_here`
 
-### Analyzing the Bundle Size
+3. Restart the development server if it's running so Create React App picks up the new variable:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+	`npm start`
 
-### Making a Progressive Web App
+Notes:
+- `.env` is listed in `.gitignore` to avoid committing secrets.
+- Environment variables in Create React App must be prefixed with `REACT_APP_` to be available in the browser code.
+- For production deployments, set the environment variable in your hosting platform (Netlify, Vercel, etc.) instead of committing it to the repo.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Project Structure (key files)
+- [src/App.js](src/App.js#L1-L24) — app root wiring providers and components
+- [src/context/CityContext.js](src/context/CityContext.js#L1-L44) — city list + selection
+- [src/context/WeatherContext.js](src/context/WeatherContext.js#L1-L109) — fetch/format weather data
+- [src/components/CityDropdown.js](src/components/CityDropdown.js#L1-L32) — city selector UI
+- [src/components/WeatherDisplay.js](src/components/WeatherDisplay.js#L1-L120) — current + forecast UI
 
-### Advanced Configuration
+## Notes & Next Steps
+- The app currently assumes Turkish cities and passes `,TR` to the OpenWeatherMap query. Remove or change the country code if you want global support.
+- Consider moving the API key to environment variables for security.
+- If you want help switching to `REACT_APP_OPENWEATHER_API_KEY` or adding a `.env` setup, I can make that change.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## License
+This repository contains no explicit license. Add a `LICENSE` file if you plan to publish.
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+Generated README: concise overview, run instructions, and file references.
