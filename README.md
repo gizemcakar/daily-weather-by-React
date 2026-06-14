@@ -31,14 +31,7 @@ A small React app that shows current weather and a 5-day forecast for Turkish ci
 	`npm test`
 
 ## OpenWeatherMap API Key
-This project fetches weather data from OpenWeatherMap. Add your API key before running the app:
-
-- Open [src/context/WeatherContext.js](src/context/WeatherContext.js#L1-L109)
-- Replace the `API_KEY` value (currently a placeholder) with your OpenWeatherMap key.
-
-Tip: For a safer approach, replace the inline `API_KEY` in `WeatherContext.js` with `process.env.REACT_APP_OPENWEATHER_API_KEY` and set the key in a `.env` file:
-
-`REACT_APP_OPENWEATHER_API_KEY=your_api_key_here`
+This project fetches weather data from OpenWeatherMap. Add your API key to .env file before running the app:
 
 ## Using environment variables (`.env`)
 
